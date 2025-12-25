@@ -7,18 +7,20 @@ class Solution {
      * @return Integer
      */
     function climbStairs($n) {
-        $k = $n;
-        $i = $n - 1;
+        $n1 = 0;
+        $n2 = 1;
 
-        $result = 0;
-        while ($i > 0) {
-            $result += $i;
+        $count = 0;
 
-            $k = $k - 2;
-            $i = $k - 1;
+        while($count < $n) {
+            $add = $n1 + $n2;
+            $n1 = $n2;
+            $n2 = $add;
+
+            $count++;
         }
 
-        return $result + 1;
+        return $n2;
     }
 }
 
