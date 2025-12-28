@@ -52,15 +52,13 @@ class Solution
 {
     function recursive(&$result, TreeNode $node): void
     {
-        var_dump($node->val);
-
         if ($node->left !== null) {
             $this->recursive($result, $node->left);
-            $result[] = $node->left->val;
         }
+        $result[] = $node->val;
+
         if ($node->right !== null) {
             $this->recursive($result, $node->right);
-            $result[] = $node->right->val;
         }
     }
 
@@ -72,7 +70,7 @@ class Solution
     {
         if (!$root) return [];
 
-        $result = [$root->val];
+        $result = [];
 
         $this->recursive($result, $root);
 
