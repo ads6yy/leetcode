@@ -50,28 +50,6 @@ function buildTree($arr)
 
 class Solution
 {
-
-    function recursive(&$result, TreeNode $node1, TreeNode $node2): void
-    {
-        if ($node1->val !== $node2->val
-            || ($node1->left !== null && $node2->left === null)
-            || ($node1->left === null && $node2->left !== null)
-            || ($node1->right !== null && $node2->right === null)
-            || ($node1->right === null && $node2->right !== null)
-        ) {
-            $result = false;
-            return;
-        }
-
-        if ($node1->left !== null && $node2->left !== null) {
-            $this->recursive($result, $node1->left, $node2->left);
-        }
-
-        if ($node1->right !== null && $node2->right !== null) {
-            $this->recursive($result, $node1->right, $node2->right);
-        }
-    }
-
     /**
      * @param TreeNode $p
      * @param TreeNode $q
@@ -82,13 +60,15 @@ class Solution
         if (!$p && !$q) return true;
         if (!$p || !$q) return false;
 
-        $result = true;
+        if ($p->val !== $q->val) return false;
 
-        $this->recursive($result, $p, $q);
-        return $result;
+        $checkLeft = $this->isSameTree($p->left, $q->left);
+        $checkRight = $this->isSameTree($p->right, $q->right);
+
+        return $checkLeft && $checkRight;
     }
 }
 
 $solution = new Solution();
 
-var_dump($solution->isSameTree(buildTree([]), buildTree([0])));
+var_dump($solution->isSameTree(buildTree([0]), buildTree([])));
