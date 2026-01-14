@@ -7,21 +7,17 @@ class Solution {
      * @return Integer
      */
     function singleNumber($nums) {
-        $uniques = [];
-        for ($i = 0; $i < count($nums); $i++) {
-            $val = $nums[$i];
-            if (!array_key_exists($val, $uniques)) {
-                $uniques[$val] = true;
-            } else {
-                unset($uniques[$val]);
-            }
+        $unique = 0;
+        foreach ($nums as $num) {
+            var_dump("num : $num");
+            $unique ^= $num;
+            var_dump("unique value : $unique");
         }
-
-        return key($uniques);
+        return $unique;
     }
 }
 
 $solution = new Solution();
 
-$nums = [2,1,2];
+$nums = [2,1,2,4,4];
 var_dump($solution->singleNumber($nums));
